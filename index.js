@@ -27,9 +27,23 @@ app.use("/api", router);
 app.get("/", (req, res) => {
 res.status(200).json({
 success: true,
-message: "Welcome to API!"
+message: "Here is your Todo API!"
 });
 });
+
+
+// get Swagger File for documentation
+const swaggerFile = require('./swagger.json');
+// get Swagger Ui
+const swaggerUI = require('swagger-ui-express');
+// get Swagger
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerFile));
+
+app.use(
+    express.urlencoded({
+        extended: true
+    })
+);
 
 // to connect with the DB
 try{
