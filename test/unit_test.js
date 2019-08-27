@@ -121,7 +121,7 @@ describe('/Get Error status(400) from Update', ()=>{
 
 // 5. Delete the Todo base on Id
 describe('/DELETE todo Routes', ()=>{
-    const deleteTodo = {_id: "5d6360bb0694c832ed91ee8d"}
+    const deleteTodo = {_id: "5d636627528a8638aac620e7"}
     it("it should be able to delete a todo based on Id we get from params", (done)=>{
         chai.request(server)
         .delete('/api/todo/delete/' + deleteTodo._id)
