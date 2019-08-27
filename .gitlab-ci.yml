@@ -9,10 +9,6 @@ proses compile:
   script: 
     - npm install
 
-test:
-  script:
-  - npm install
-
 production:
   type: deploy
   stage: production
