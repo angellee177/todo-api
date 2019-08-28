@@ -113,7 +113,7 @@
         }
       }
     },
-    "/update/{id}": {
+    "/todo/update/{id}": {
       "put": {
         "tags": [
           "Todo Operation"
@@ -191,6 +191,169 @@
           }
         }
       }
+    },
+    "/category/show": {
+      "get": {
+        "tags": [
+          "Category Operation"
+        ],
+        "summary": "Show All Category",
+        "description": "Show all Category List",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "All Category showed."
+          }
+        }
+      }
+    },
+    "/category/show/{id}": {
+      "get": {
+        "tags": [
+          "Category Operation"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the Category that we want to show",
+            "type": "string",
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "summary": "Show Category",
+        "description": "Get detail Category list",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "If access is given. It will show Category details."
+          }
+        }
+      }
+    },
+    "/category/new": {
+      "post": {
+        "tags": [
+          "Category Operation"
+        ],
+        "summary": "Create new Category",
+        "description": "make a new Category List",
+        "operationId": "addCategory",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Category will save to Database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User successfully created."
+          }
+        }
+      }
+    },
+    "/category/updated/{id}": {
+      "put": {
+        "tags": [
+          "Category Operation"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            
+            "required": true,
+            "description": "ID of the Category that we want to show",
+            "type": "string",
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            
+            "required": true,
+            "description": "ID of the Category that we want to show",
+            "type": "string",
+            "schema": {
+              "$ref": "#/definitions/updateCategory"
+            }
+          }
+        ],
+        "summary": "Update Category",
+        "description": "Update Category",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "if the ID is right, it will update the Category."
+          }
+        }
+      }
+    },
+    "/category/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Category Operation"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the Category that we want to show",
+            "type": "string",
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "summary": "Delete Category",
+        "description": "Delete Category based id",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "delete Category based on Id"
+          },
+          "422": {
+            "description": "there is something wrong with your ID"
+          }
+        }
+      }
     }
   },
   "securityDefinitions": {
@@ -205,7 +368,8 @@
       "type": "object",
       "required": [
         "task",
-        "status"
+        "status",
+        "category"
       ],
       "properties": {
         "task": {
@@ -215,6 +379,10 @@
         "status": {
           "type": "string",
           "example": "false"
+        },
+        "category": {
+          "type": "string",
+          "example": "5d6620d3892aa543855aad5d"
         }
       }
     },
@@ -222,7 +390,8 @@
       "type": "object",
       "required": [
         "task",
-        "status"
+        "status",
+        "category"
       ],
       "properties": {
         "task": {
@@ -232,6 +401,34 @@
         "status": {
           "type": "string",
           "example": "true"
+        },
+        "category": {
+          "type": "string",
+          "example": "5d6620d3892aa543855aad5d"
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "work"
+        }
+      }
+    },
+    "updateCategory": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "update work"
         }
       }
     }
