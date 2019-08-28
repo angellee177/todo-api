@@ -1,4 +1,4 @@
-const server = require('../index');
+const server = process.env.DB_TEST;
 const chai = require('chai');
 const chaihttp = require('chai-http');
 const should = chai.should();
