@@ -5,9 +5,9 @@ const port = process.env.PORT;
 const cors = require('cors');
 const mongoose = require('mongoose');
 const dbConnection ={
-    development: "mongodb://localhost/todo", 
-    test: "mongodb://localhost/test",
-    production: "mongodb+srv://angellee177:5LWN2FrrmyVEa7F@cluster0-bgfog.mongodb.net/test?retryWrites=true&w=majority"
+    development: process.env.DB_DEVELOPMENT, 
+    test: process.env.DB_TEST,
+    production: process.env.DB_PRODUCTION
   } 
 // Please change this value into your database connection URI
 const env = process.env.NODE_ENV;
