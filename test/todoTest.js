@@ -1,4 +1,4 @@
-const server = "mongodb+srv://angellee177:5LWN2FrrmyVEa7F@cluster0-bgfog.mongodb.net/test?retryWrites=true&w=majority";
+const server = require('../index');
 const chai = require('chai');
 const chaihttp = require('chai-http');
 const should = chai.should();
