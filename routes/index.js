@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const todoRouter = require('./todoRouter');
-const UpdateTodo = require('./updateRouter');
+const categoryRouter = require('./categoryRouter');
 
 router.use('/todo', todoRouter);
-router.use('/update', UpdateTodo);
+router.use('/category', categoryRouter);
+
 
 module.exports = router;
 

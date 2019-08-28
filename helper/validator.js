@@ -4,10 +4,17 @@ const Joi = require('@hapi/joi');
 function validationTodo(todoSchema){
     const schema = {
         task: Joi.string().required(),
-        status: Joi.boolean()
+        status: Joi.boolean(),
+        category: Joi.string().required()
     }
     return Joi.validate(todoSchema, schema);
 }
 
+function validationCategory(categorySchema){
+    const schema = {
+        name: Joi.string().required()
+    }
+    return Joi.validate(categorySchema, schema);
+}
 
-module.exports = { validationTodo };
+module.exports = { validationTodo, validationCategory };
