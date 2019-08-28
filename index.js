@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 require('dotenv/config');
 const port = process.env.PORT;
+const cors = require('cors');
 const mongoose = require('mongoose');
 const dbConnection ={
     development: "mongodb://localhost/todo", 
@@ -11,7 +12,7 @@ const dbConnection ={
 // Please change this value into your database connection URI
 const env = process.env.NODE_ENV;
 
-
+app.use(cors());
 app.use(express.json());
 app.use(
 express.urlencoded({
