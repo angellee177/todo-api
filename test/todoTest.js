@@ -90,8 +90,8 @@ describe('/POST todo Routes', ()=>{
 
 
 // 3. Get Error Status from Create Function
-describe('/POST todo Routes', ()=>{
-    it("it should create a todo", (done)=>{
+describe('/ ERROR todo Routes', ()=>{
+    it("it should get ERROR STATUS create a todo", (done)=>{
         const newTodo = {task: "", status: "false", category: "5d6519bf98a79c4434f9957a"};
         chai.request(server)
         .post('/api/todo/new')
