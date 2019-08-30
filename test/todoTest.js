@@ -27,17 +27,17 @@ chai.should();
 // })
 
 // Delete Data after all function running
-// afterEach(done=>{
-//     Todo.deleteMany({})
-//     .then((data)=>{
-//         console.log(data)
-//         done();
-//     })
-//     .catch((err)=>{
-//         console,log(err)
-//         done();
-//     })
-// })
+afterEach(done=>{
+    Todo.deleteMany({})
+    .then((data)=>{
+        console.log(data)
+        done();
+    })
+    .catch((err)=>{
+        console,log(err)
+        done();
+    })
+})
 
 
 

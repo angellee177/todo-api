@@ -1,3 +1,4 @@
+// /* istanbul ignore file */
 const express = require('express');
 const app = express();
 require('dotenv/config');
@@ -61,4 +62,6 @@ try{
 catch(error){
   console.log(error)
 };
+
+
 module.exports = app;

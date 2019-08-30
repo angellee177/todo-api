@@ -27,13 +27,15 @@ async function showAllCategory(req, res){
 
 // 3. Show Category based on ID
 async function show_category_id(req, res){
-    const category = await Category.findById(req.params.id);
+    const category = await Category.findById(req.params.id).populate({path: 'todo', select:'task'})
     res.status(200).json(success(category, "Detail Category"));
 }
 
 
 // 4. Update Category based on ID
 async function updateCategory(req, res){
+    const { error } = validationCategory(req.body);
+    if(error) return res.status(400).json(error.details[0].message);
     const update_category = await Category.findByIdAndUpdate(req.params.id,{
         $set: {name: req.body.name}
     }, { new: true })
