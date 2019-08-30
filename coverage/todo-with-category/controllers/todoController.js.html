@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for todo/controllers/todoController.js</title>
+    <title>Code coverage report for todo-with-category/controllers/todoController.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,35 +16,35 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">All files</a> / <a href="index.html">todo/controllers</a> todoController.js
+      <a href="../../index.html">All files</a> / <a href="index.html">todo-with-category/controllers</a> todoController.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">97.37% </span>
+        <span class="strong">78.95% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>37/38</span>
+        <span class='fraction'>30/38</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">91.67% </span>
+        <span class="strong">57.14% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>11/12</span>
+        <span class='fraction'>8/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">83.33% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>6/6</span>
+        <span class='fraction'>5/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">96.97% </span>
+        <span class="strong">81.25% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>32/33</span>
+        <span class='fraction'>26/32</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -136,11 +136,7 @@
 <a name='L88'></a><a href='#L88'>88</a>
 <a name='L89'></a><a href='#L89'>89</a>
 <a name='L90'></a><a href='#L90'>90</a>
-<a name='L91'></a><a href='#L91'>91</a>
-<a name='L92'></a><a href='#L92'>92</a>
-<a name='L93'></a><a href='#L93'>93</a>
-<a name='L94'></a><a href='#L94'>94</a>
-<a name='L95'></a><a href='#L95'>95</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L91'></a><a href='#L91'>91</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -188,10 +184,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -207,8 +199,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -221,15 +213,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -281,10 +273,6 @@ async function show_by_id(req, res){
 &nbsp;
 // 4. Update Todo List
 async function updateTodo(req, res){
-    // checking if there is any error inputs
-    const { error } = validationTodo(req.body);
-    if(error) return res.status(400).json(error.details[0].message);
-&nbsp;
     // Update the Todo
     const updateTodo = await Todo.findByIdAndUpdate(req.params.id, 
         {
@@ -300,9 +288,9 @@ async function updateTodo(req, res){
 &nbsp;
 // 5. Delete Todo Based on Id
 // Remove Todo from index
-function removeTodo(todo, elem){
-    var index = todo.indexOf(elem);
-    <span class="missing-if-branch" title="if path not taken" >I</span>if(index &gt; -1){
+function <span class="fstat-no" title="function not covered" >removeTodo(</span>todo, elem){
+    var index = <span class="cstat-no" title="statement not covered" >todo.indexOf(elem);</span>
+<span class="cstat-no" title="statement not covered" >    if(index &gt; -1){</span>
 <span class="cstat-no" title="statement not covered" >        todo.splice(index, 1);</span>
     }
 &nbsp;
@@ -310,20 +298,20 @@ function removeTodo(todo, elem){
 &nbsp;
 async function deleteTodo(req, res){
     // get the Todo Id at Todo Schema
-    let todo = await Todo.findById(req.body.todoId);
-    if(!todo) res.status(422).json(errorMessage("Id not found"))
-&nbsp;
-    // get the Category Id at Todo Schema
-    let category = await Todo.findOne({category: req.body.categoryId});
+    let todo = await Todo.findById(req.params.id);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if(!todo) <span class="cstat-no" title="statement not covered" >res.status(422).json(errorMessage("Id not found"))</span>
 &nbsp;
     // get the Category Data based on Req.body.categoryId
-    category = await Category.findById(req.body.categoryId);
+    category = await Category.findOne({todo: req.params.id});
+    <span class="missing-if-branch" title="else path not taken" >E</span>if(!category) res.status(422).json(errorMessage("Id not found"))
 &nbsp;
     // delete the Todo from Category Id
     removeTodo(category.todo, todo._id);
     // delete the Todo from Todo List
-    todo = await Todo.findByIdAndDelete(req.body.todoId);
-    res.status(200).json(success(todo, "successfully deleted!"))
+<span class="cstat-no" title="statement not covered" >    todo = await Todo.findByIdAndDelete(req.params.id);</span>
+<span class="cstat-no" title="statement not covered" >    if(!todo) <span class="cstat-no" title="statement not covered" >res.status(422).json(errorMessage("Id not found"))</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    res.status(200).json(success(todo, "successfully deleted!"))</span>
 }
 &nbsp;
 &nbsp;
@@ -334,7 +322,7 @@ module.exports = { createTodo, showTodo, show_by_id, updateTodo, deleteTodo}
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Aug 30 2019 14:31:45 GMT+0700 (Western Indonesia Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Aug 30 2019 19:36:18 GMT+0700 (Western Indonesia Time)
 </div>
 </div>
 <script src="../../prettify.js"></script>

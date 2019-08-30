@@ -4,6 +4,7 @@ const chaihttp = require('chai-http');
 const should = chai.should();
 // get Todo Model
 const Todo = require('../models/todo');
+const Category =  require('./../models/category');
 // get Faker for create fake data
 // const faker = require('faker');
 
@@ -12,19 +13,6 @@ const Todo = require('../models/todo');
 
 chai.use(chaihttp);
 chai.should();
-
-// Delete Data before other function running
-// beforeEach(done=>{
-//     User.create({})
-//     .then((data) => {
-//         console.log(data)
-//         done();
-//     })
-//     .catch((err)=>{
-//         console.log(err)
-//         done();
-//     })
-// })
 
 // Delete Data after all function running
 afterEach(done=>{
@@ -59,7 +47,7 @@ describe('/Get the root path', ()=>{
 describe('/Get the show path from todo', ()=>{
     it("should show all todo list", (done)=>{
         chai.request(server)
-        .get('/api/todo/show')
+        .get('/api/todo/')
         .end((err, res)=>{
             res.should.have.status(200);
             res.body.should.have.property('success').equal(true);
@@ -73,19 +61,25 @@ describe('/Get the show path from todo', ()=>{
 
 // 3. Create a new todo
 describe('/POST todo Routes', ()=>{
-    const newTodo = {task: "task test", status: "false", category: "5d6620ebf9edbb43b194ac47"};
     it("it should create a todo", (done)=>{
-        chai.request(server)
-        .post('/api/todo/new')
-        .send(newTodo)
-        .end((err, res) =>{
-            res.should.have.status(200);
-            res.body.should.have.property('success').equal(true);
-            res.body.should.have.property('message').equal("Success create new task !");
-            res.should.be.an("object");
-            done();
+        const newCategory = new Category({ name: "test Category"});
+        newCategory.save((error, newCategory)=>{
+            const newTodo = {task: "task test", status: "false", category: newCategory._id};
+            chai.request(server)
+            .post('/api/todo/new')
+            .send(newTodo)
+            .end((err, res) =>{
+                res.should.have.status(200);
+                res.body.should.have.property('success').equal(true);
+                res.body.should.have.property('message').equal("Success create new task !");
+                res.should.be.an("object");
+                done();
+            })
         })
     })
+   
+   
+    
 })
 
 
@@ -154,51 +148,43 @@ describe('/Get Error messages from Update', ()=>{
     })
 })
 
-// 4. Update blank Todo
-describe('/Get Error status(400) from Update', ()=>{
-    const errorUpdateTodo = {task: "", status: "true", category: ""};
-    it("it shouldn't update a todo based on Id we get from Params", (done)=>{
-        chai.request(server)
-        .put('/api/todo/update/5d6349b6e6a3801855b35f93')
-        .send(errorUpdateTodo)
-        .end((err, res)=>{
-            res.should.have.status(400);
-            done();
-        })
-    })
-})
-
-
-// 5. Delete the Todo base on Id
-describe('/DELETE todo Routes', ()=>{
-    it("it should be able to delete a todo based on Id we get from params", (done)=>{
-        const deleteTodo = new Todo({task: "task new", status: "false", category: "5d6620ebf9edbb43b194ac47"});
-        deleteTodo.save((error, deleteTodo)=>{
-            chai.request(server)
-            .delete('/api/todo/delete/')
-            .send({todoId: deleteTodo._id, categoryId: deleteTodo.category})
-            .end((err, res)=>{
-                res.should.have.status(200);
-                res.body.should.have.property('success').equal(true);
-                res.body.should.have.property('message').equal("successfully deleted!");
-                done();
-            })
-            if(error) return res.status(422).json({error: error})
-        })
-    })
-})
 
 // 5. Delete Todo Error Status.(422)
 describe('/ Get Error DELETE todo Routes', ()=>{
-    const deleteTodo = {todoId: "5d634a21a7370a18deb3d1bd", categoryId: "5d6519bf98a79c4434f9957a"}
     it("it shouldn't be able to delete a todo based on Id we get from params", (done)=>{
-        chai.request(server)
-        .delete('/api/todo/delete/')
-        .end((err, res)=>{
-            res.should.have.status(422);
-            res.body.should.have.property('success').equal(false);
-            res.body.should.have.property('message').equal("Id not found");
-            done();
+        const newCategory = new Category({ name: "test Category"});
+        newCategory.save((error, newCategory)=>{
+            const deleteTodo = new Todo({task: "task new", status: "false", category: newCategory._id});
+            deleteTodo.save((error, deleteTodo)=>{
+                chai.request(server)
+                .delete('/api/todo/delete/' + deleteTodo._id)
+                .send(deleteTodo)
+                .end((err, res)=>{
+                    res.should.have.status(422);
+                    res.body.should.have.property('success').equal(false);
+                    res.body.should.have.property('message').equal("Id not found");
+                    done();
+                })
+                if(error) return res.status(422).json({error: error})
+            })
+        })
+    })
+})
+
+// 5. Delete the Todo base on Id 
+describe('/ DELETE todo Routes', ()=>{
+    it("it should be able to delete a todo based on Id we get from params", (done)=>{
+        const newCategory = new Category({ name: "test Category"});
+        newCategory.save((error, newCategory)=>{
+            const deleteTodo = new Todo({task: "task new", status: "false", category: newCategory._id});
+            deleteTodo.save((error, deleteTodo)=>{
+                chai.request(server)
+                .delete('/api/todo/delete/' + deleteTodo._id)
+                .end((err, res)=>{
+                    res.should.have.status(200);
+                    done();
+                })
+            })
         })
     })
 })

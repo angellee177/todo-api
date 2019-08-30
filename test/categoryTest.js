@@ -82,6 +82,20 @@ describe('/Get Error messages from Category Update', ()=>{
     })
 })
 
+// 2. Shouldn't Update the Category based on Id
+describe('/Get Error messages status(400) from Category Update', ()=>{
+    const errorUpdateCategory = {name: ""};
+    it("it shouldn't update a todo based on Id we get from Params", (done)=>{
+        chai.request(server)
+        .put('/api/category/updated/5d6349b6e6a3801855b35f93')
+        .send(errorUpdateCategory)
+        .end((err, res)=>{
+            res.should.have.status(400);
+            done();
+        })
+    })
+})
+
 
 // 3. Delete Category based on Id
 describe('/DELETE Category Routes', ()=>{
@@ -139,7 +153,7 @@ describe('/Get the show path from Category', ()=>{
 describe('/Get the show path from Category', ()=>{
     it("should show all Category list", (done)=>{
         chai.request(server)
-        .get('/api/category/show')
+        .get('/api/category/')
         .end((err, res)=>{
             res.should.have.status(200);
             res.body.should.have.property('success').equal(true);

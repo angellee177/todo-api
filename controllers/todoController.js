@@ -69,24 +69,23 @@ function removeTodo(todo, elem){
     if(index > -1){
         todo.splice(index, 1);
     }
-
 }
 
 async function deleteTodo(req, res){
     // get the Todo Id at Todo Schema
-    let todo = await Todo.findById(req.body.todoId);
+    let todo = await Todo.findById(req.params.id);
     if(!todo) res.status(422).json(errorMessage("Id not found"))
 
-    // get the Category Id at Todo Schema
-    let category = await Todo.findOne({category: req.body.categoryId});
-
     // get the Category Data based on Req.body.categoryId
-    category = await Category.findById(req.body.categoryId);
+    category = await Category.findOne({todo: req.params.id});
+    if(!category) res.status(422).json(errorMessage("Id not found"))
 
     // delete the Todo from Category Id
     removeTodo(category.todo, todo._id);
     // delete the Todo from Todo List
-    todo = await Todo.findByIdAndDelete(req.body.todoId);
+    todo = await Todo.findByIdAndDelete(req.params.id);
+    if(!todo) res.status(422).json(errorMessage("Id not found"))
+
     res.status(200).json(success(todo, "successfully deleted!"))
 }
 

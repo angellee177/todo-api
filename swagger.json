@@ -29,7 +29,7 @@
     "https"
   ],
   "paths": {
-    "/todo/show": {
+    "/todo/": {
       "get": {
         "tags": [
           "Todo Operation"
@@ -157,7 +157,7 @@
         }
       }
     },
-    "/todo/delete": {
+    "/todo/delete/{id}": {
       "delete": {
         "tags": [
           "Todo Operation"
@@ -165,12 +165,12 @@
         "parameters": [
           {
             "name": "id",
-            "in": "body",
+            "in": "path",
             "required": true,
-            "description": "ID of the todo that we want to show",
+            "description": "ID of the todo that we want to delete",
             "type": "string",
             "schema": {
-              "$ref": "#/definitions/DeleteTask"
+              "$ref": "#/definitions/Task"
             }
           }
         ],
@@ -192,7 +192,7 @@
         }
       }
     },
-    "/category/show": {
+    "/category/": {
       "get": {
         "tags": [
           "Category Operation"
@@ -382,7 +382,7 @@
         },
         "category": {
           "type": "string",
-          "example": "5d6620d3892aa543855aad5d"
+          "example": "5d69160d94ae7763cd611eb7"
         }
       }
     },
@@ -404,24 +404,7 @@
         },
         "category": {
           "type": "string",
-          "example": "5d6620d3892aa543855aad5d"
-        }
-      }
-    },
-    "DeleteTask": {
-      "type": "object",
-      "required": [
-        "taskId",
-        "categoryId"
-      ],
-      "properties": {
-        "todoId": {
-          "type": "string",
-          "example": ""
-        },
-        "categoryId": {
-          "type": "string",
-          "example": ""
+          "example": "5d69160d94ae7763cd611eb7"
         }
       }
     },
