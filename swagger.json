@@ -157,7 +157,7 @@
         }
       }
     },
-    "/todo/delete/{id}": {
+    "/todo/delete": {
       "delete": {
         "tags": [
           "Todo Operation"
@@ -165,12 +165,12 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
+            "in": "body",
             "required": true,
             "description": "ID of the todo that we want to show",
             "type": "string",
             "schema": {
-              "$ref": "#/definitions/Task"
+              "$ref": "#/definitions/DeleteTask"
             }
           }
         ],
@@ -405,6 +405,23 @@
         "category": {
           "type": "string",
           "example": "5d6620d3892aa543855aad5d"
+        }
+      }
+    },
+    "DeleteTask": {
+      "type": "object",
+      "required": [
+        "taskId",
+        "categoryId"
+      ],
+      "properties": {
+        "todoId": {
+          "type": "string",
+          "example": ""
+        },
+        "categoryId": {
+          "type": "string",
+          "example": ""
         }
       }
     },
