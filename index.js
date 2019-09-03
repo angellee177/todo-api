@@ -10,6 +10,7 @@ const dbConnection ={
     test: process.env.DB_TEST,
     production: process.env.DB_PRODUCTION
   } 
+const config = require('config');
 // Please change this value into your database connection URI
 const env = process.env.NODE_ENV;
 
@@ -32,6 +33,13 @@ success: true,
 message: "Here is your Todo API!"
 });
 });
+
+
+// check if the config already connected
+if (!config.get('jwtPrivateKey')){
+  console.error('FATAL ERROR: jwtPrivateKey is not defined.');
+  process.exit(1);
+}
 
 
 // get Swagger File for documentation

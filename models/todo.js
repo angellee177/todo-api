@@ -10,7 +10,8 @@ const todoSchema = new Schema({
     status: {
         type: Boolean
     },
-    category: { type: Schema.Types.ObjectId, ref: "Category" }
+    category: { type: Schema.Types.ObjectId, ref: "Category" },
+    author: { type: Schema.Types.ObjectId, ref: "User" }
 })
 
 const Todo = mongoose.model("Todo", todoSchema);

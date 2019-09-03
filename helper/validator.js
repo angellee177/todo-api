@@ -1,6 +1,7 @@
 const Joi = require('@hapi/joi');
 
-// for Validate Todo Function
+
+// 1. for Validate Todo Function
 function validationTodo(todoSchema){
     const schema = {
         task: Joi.string().required(),
@@ -10,7 +11,8 @@ function validationTodo(todoSchema){
     return Joi.validate(todoSchema, schema);
 }
 
-// for Validate Category Function
+
+// 2. for Validate Category Function
 function validationCategory(categorySchema){
     const schema = {
         name: Joi.string().required()
@@ -18,14 +20,25 @@ function validationCategory(categorySchema){
     return Joi.validate(categorySchema, schema);
 }
 
-// for Validate Register Function
+
+// 3. for Validate Register Function
 function validationRegister(userSchema){
     const schema = {
         name: Joi.string().required(),
         email: Joi.string().required().email(),
         password: Joi.string().required()
     }
-    return Joi.validate(userSchema, schema)
+    return Joi.validate(userSchema, schema);
 }
 
-module.exports = { validationTodo, validationCategory, validationRegister };
+
+// 4. for Validate Login Function
+function validationLogin(userSchema){
+    const schema = {
+        email: Joi.string().required().email(),
+        password: Joi.string().required()
+    }
+    return Joi.validate(userSchema, schema);
+}
+
+module.exports = { validationTodo, validationCategory, validationRegister, validationLogin };

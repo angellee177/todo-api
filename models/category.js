@@ -7,7 +7,12 @@ const categorySchema = new Schema({
         type: String,
         required: true
     },
+    created_by: {
+        type: String,
+        required: true
+    },
     todo: [{type: Schema.Types.ObjectId, ref: 'Todo'}]
+
 })
 
 const   Category = mongoose.model("Category", categorySchema);
