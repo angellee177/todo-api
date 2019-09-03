@@ -10,6 +10,7 @@ function validationTodo(todoSchema){
     return Joi.validate(todoSchema, schema);
 }
 
+// for Validate Category Function
 function validationCategory(categorySchema){
     const schema = {
         name: Joi.string().required()
@@ -17,4 +18,14 @@ function validationCategory(categorySchema){
     return Joi.validate(categorySchema, schema);
 }
 
-module.exports = { validationTodo, validationCategory };
+// for Validate Register Function
+function validationRegister(userSchema){
+    const schema = {
+        name: Joi.string().required(),
+        email: Joi.string().required().email(),
+        password: Joi.string().required()
+    }
+    return Joi.validate(userSchema, schema)
+}
+
+module.exports = { validationTodo, validationCategory, validationRegister };
