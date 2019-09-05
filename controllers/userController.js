@@ -6,10 +6,7 @@ const { validationRegister, validationLogin } = require('./../helper/validator')
 const _ = require('lodash');
 // bcrypt the password
 const bcrypt = require('bcrypt');
-// get the Token
-const jwt = require('jsonwebtoken');
-// JWTKey on Config
-const config = require('config');
+
 
 
 // 1. Register New User
